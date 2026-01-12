@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homenagem de Aniversário</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+  <style>
+    /* Estilos rápidos para garantir que o texto apareça bem */
+    .text-content {
+      text-align: center;
+      margin-top: 20px;
+      color: white; /* Ajuste a cor conforme seu fundo */
+      font-family: 'Arial', sans-serif; /* Ou a fonte do seu projeto */
+      z-index: 10;
+      position: relative;
+    }
+    .titulo-aniversario {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    .frase-personalizada {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Background com estrelas -->
+    <div class="background"></div>
+    
+    <!-- 3D Scene Container -->
+    <div class="scene-container">
+      <div class="combined-model-container">
+        <model-viewer 
+          src="assets/mesa_bolo.glb"
+          alt="Mesa com Bolo 3D"
+          auto-rotate
+          camera-controls
+          touch-action="none"
+          interaction-policy="allow-when-focused"
+          camera-orbit="0deg 75deg 3.2m"
+          field-of-view="42deg"
+          min-camera-orbit="auto 45deg auto"
+          max-camera-orbit="auto 90deg auto"
+          exposure="1.2"
+          shadow-intensity="1"
+          style="width: 100%; height: 50vh; background: transparent;"> <!-- Ajustei a altura para sobrar espaço -->
+        </model-viewer>
+      </div>
+    </div>
+
+    <!-- SEÇÃO DE TEXTO ABAIXO DO BOLO -->
+    <div class="text-content">
+      <h1 class="titulo-aniversario">Feliz aniversário, cabeçuda! ❤️</h1>
+      <p class="frase-personalizada">Te amo muito, mesmo meio longe🐢</p>
+    </div>
+
+    <!-- Photos -->
+    <div class="photos-container">
+      <div class="photo-frame frame-left">
+        <img src="photo1.jpg" alt="Foto 1" />
+      </div>
+      <div class="photos-right">
+        <div class="photo-frame frame-right-diagonal">
+          <img src="photo2.jpg" alt="Foto 2" />
+        </div>
+        <div class="photo-frame frame-right-normal">
+          <img src="photo3.jpg" alt="Foto 3" />
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

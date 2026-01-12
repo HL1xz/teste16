@@ -1,0 +1,209 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+  background: #0a0e27;
+  position: relative;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 40px;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #0a0e27 0%, #1a1a2e 50%, #16213e 100%);
+  z-index: -1;
+  overflow: hidden;
+}
+
+/* Estrelas animadas */
+.background::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(2px 2px at 60% 70%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(2px 2px at 90% 40%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 33% 60%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 55% 80%, rgba(255,255,255,0.6), transparent);
+  background-repeat: repeat;
+  background-size: 250px 250px;
+  animation: stars 25s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes stars {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-250px);
+  }
+}
+
+.scene-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 60vh;
+  min-height: 400px;
+  z-index: 2;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.combined-model-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photos-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 40px;
+  z-index: 3;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 40px;
+  perspective: 1200px;
+}
+
+.photos-right {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: flex-end;
+}
+
+.photo-frame {
+  width: 243.6px;
+  height: 330.6px;
+  background: linear-gradient(145deg, #d4af37, #f4d03f, #ffd700);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.6),
+    inset 0 2px 8px rgba(255, 255, 255, 0.4),
+    inset 0 -2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+}
+
+.frame-left {
+  transform: perspective(1200px) rotateY(-5deg) translateZ(0);
+}
+
+.frame-right-diagonal {
+  transform: perspective(1200px) rotateY(12deg) rotateZ(-3deg) translateZ(0);
+}
+
+.frame-right-normal {
+  transform: perspective(1200px) rotateY(0deg) translateZ(0);
+}
+
+.photo-frame:hover {
+  transform: perspective(1200px) rotateY(0deg) translateZ(30px) scale(1.05);
+  box-shadow: 
+    0 20px 45px rgba(0, 0, 0, 0.7),
+    inset 0 2px 8px rgba(255, 255, 255, 0.5),
+    inset 0 -2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  display: block;
+}
+
+/* Model viewer customização */
+model-viewer {
+  --poster-color: transparent;
+  --progress-bar-color: #ffd700;
+  --progress-bar-height: 3px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    gap: 30px;
+    padding: 15px;
+  }
+  
+  .scene-container {
+    height: 50vh;
+    min-height: 350px;
+  }
+  
+  .photos-container {
+    flex-direction: column;
+    gap: 25px;
+    perspective: none;
+    padding: 0 20px;
+  }
+  
+  .photos-right {
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .photo-frame {
+    width: 212px;
+    height: 288px;
+    transform: none !important;
+  }
+  
+  .photo-frame:hover {
+    transform: scale(1.02) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .scene-container {
+    height: 45vh;
+    min-height: 300px;
+  }
+  
+  
+  .photo-frame {
+    width: 190px;
+    height: 258px;
+  }
+}
